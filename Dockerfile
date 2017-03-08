@@ -1,4 +1,9 @@
-FROM golang:1.5-onbuild
+FROM golang:1.7.5-wheezy
+
+ADD ./ /go/src/github.com/vulcand/vulcand/
+
+RUN go get && go install
+
 EXPOSE 8181 8182
-RUN make install
+
 ENTRYPOINT ["/go/bin/vulcand"]
